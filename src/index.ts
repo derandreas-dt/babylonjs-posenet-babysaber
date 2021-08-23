@@ -100,10 +100,10 @@ const createScene = (engine, gameCanvas, store) => {
     new Color3(1,0,1),
   ]
 
-  var gl = new GlowLayer("glow", scene);
+  var gl = new GlowLayer('glow', scene)
   gl.customEmissiveColorSelector = function(mesh, subMesh, material, result) {
       if (mesh.name === 'box1') {
-        // result.set(1, 0, 1, 1);
+        // result.set(1, 0, 1, 1)
         result.copyFrom(mesh.material['emissiveColor'].clone().toColor4(1))
       } else if(mesh.name === 'leftBox' || mesh.name === 'rightBox') {
         result.set(1, 1, 1, 1)
@@ -114,21 +114,21 @@ const createScene = (engine, gameCanvas, store) => {
 
   // GUI stuff
 
-  const advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI("UI");
+  const advancedTexture = AdvancedDynamicTexture.CreateFullscreenUI('UI')
 
-  const rect1 = new Rectangle();
-  rect1.width = 0.2;
-  rect1.height = "40px";
-  rect1.color = "black";
-  rect1.thickness = 0;
-  rect1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+  const rect1 = new Rectangle()
+  rect1.width = 0.2
+  rect1.height = '40px'
+  rect1.color = 'black'
+  rect1.thickness = 0
+  rect1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT
   rect1.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP
-  rect1.top = "0px";
-  rect1.left = "0px";
+  rect1.top = '0px'
+  rect1.left = '0px'
 
   const text1 = new TextBlock('score')
-  text1.text = "Score 0"
-  text1.color = "white"
+  text1.text = 'Score 0'
+  text1.color = 'white'
   text1.fontSize = 24
   rect1.addControl(text1)
 
@@ -144,7 +144,7 @@ const createScene = (engine, gameCanvas, store) => {
     box.position = new Vector3(0, 0, 0)
     box.scaling = new Vector3(0, 0, 0)
 
-    var materialforbox = new StandardMaterial("texture1", scene)
+    var materialforbox = new StandardMaterial('texture1', scene)
     materialforbox.emissiveColor = colors[Math.floor(Math.random()*colors.length)].clone()
 
     box.material = materialforbox
@@ -162,8 +162,8 @@ const createScene = (engine, gameCanvas, store) => {
     const scaleTo = new Vector3(1, 1, 1)
     const easingFunction = new CircleEase()
     easingFunction.setEasingMode(EasingFunction.EASINGMODE_EASEIN)
-    Animation.CreateAndStartAnimation("anim", box, "position", 10, 120, box.position, whereto, Animation.ANIMATIONLOOPMODE_CONSTANT, easingFunction);
-    Animation.CreateAndStartAnimation("anim", box, "scaling", 10, 120, box.scaling, scaleTo, Animation.ANIMATIONLOOPMODE_CONSTANT, easingFunction);
+    Animation.CreateAndStartAnimation('anim', box, 'position', 10, 120, box.position, whereto, Animation.ANIMATIONLOOPMODE_CONSTANT, easingFunction)
+    Animation.CreateAndStartAnimation('anim', box, 'scaling', 10, 120, box.scaling, scaleTo, Animation.ANIMATIONLOOPMODE_CONSTANT, easingFunction)
 
 
     scene.registerBeforeRender(() => {
