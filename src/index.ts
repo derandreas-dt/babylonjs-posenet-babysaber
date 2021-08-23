@@ -1,4 +1,3 @@
-import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera'
 import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera'
 import { Engine } from '@babylonjs/core/Engines/engine'
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight'
@@ -6,7 +5,7 @@ import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder'
 import { Scene } from '@babylonjs/core/scene'
 import { Vector3 } from '@babylonjs/core/Maths/math.vector'
 import { Scalar } from '@babylonjs/core/Maths/math.scalar'
-import { SampleMaterial } from './Materials/SampleMaterial'
+import { Sound } from '@babylonjs/core/Audio/sound'
 
 import { toggleWorldAxis } from './helpers/axis.js'
 import { addFreeCameraScroll } from './helpers/freecamerascroll.js'
@@ -49,6 +48,9 @@ const createScene = (engine, gameCanvas, store) => {
   const scene = new Scene(engine)
   const camera = new ArcRotateCamera('camera', Math.PI/2, Math.PI/2, -20, new Vector3(0, 0, 0), scene)
   const light = new HemisphericLight('light', new Vector3(0, 1, 0), scene)
+
+  const boxHit = new Sound('hit', 'hit28.wav', scene)
+  // const bumbleBee = new Sound('bee', 'bumblebee.wav', scene)
 
   camera.attachControl(gameCanvas)
 
@@ -147,6 +149,15 @@ const createScene = (engine, gameCanvas, store) => {
 
     box.material = materialforbox
 
+    // const boxSound = bumbleBee.clone()
+    // boxSound.updateOptions({
+    //   maxDistance: 1000,
+    //   refDistance: 500
+    // })
+    // boxSound.setVolume(0.6)
+    // boxSound.attachToMesh(box)
+    // boxSound.play()
+
     var whereto = new Vector3(Scalar.RandomRange(-3, 3), Scalar.RandomRange(-3, 3), -15)
     const scaleTo = new Vector3(1, 1, 1)
     const easingFunction = new CircleEase()
@@ -162,14 +173,17 @@ const createScene = (engine, gameCanvas, store) => {
       if(!box['isAlreadyHit'] && (box.intersectsMesh(leftBox) || box.intersectsMesh(rightBox))) {
         store.set('score', store.get('score') + 1)
         text1.text = 'Score ' + store.get('score')
+        boxHit.play()
         box['isAlreadyHit'] = true
         box.setEnabled(false)
         box.isVisible = false
+        // boxSound.stop()
         box.dispose()
       }
 
       if(box.position.z < -14) {
         box.setEnabled(false)
+        // boxSound.stop()
         box.dispose()
       }
     })
