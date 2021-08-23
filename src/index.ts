@@ -134,8 +134,8 @@ const createScene = (engine, gameCanvas, store) => {
 
   advancedTexture.addControl(rect1)
 
-  window.setInterval(() => {
-
+  // window.setInterval(() => {
+  const createEnemyBox = () => {
     const box = MeshBuilder.CreateBox('box1', {
       width: 1,
       height: 1,
@@ -187,7 +187,15 @@ const createScene = (engine, gameCanvas, store) => {
         box.dispose()
       }
     })
-  }, 1000)
+  }
+
+  (function createRandomEnemies() {
+    var rand = Math.round(Math.random() * (5000 - 500)) + 500
+    setTimeout(function() {
+      createEnemyBox()
+      createRandomEnemies()
+    }, rand)
+  }())
 
   return scene
 }
