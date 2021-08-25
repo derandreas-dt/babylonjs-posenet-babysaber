@@ -1,73 +1,40 @@
-# BABYLON.js Typescript Starter
+# BabySaber
 
-This repository contains a sample BABYLON.js application.
+A prototype game to have something like BeatSaber in the browser based
+on your body via webcam recorded.
+The "sabers" are you wrists and you need to hit blocks, which are in
+the 3D space.
 
-## Setup
+Uses the webcam with googles posenet to identify your skeleton
+in front of you camera
 
-Run the following commands from within the repository's root folder to setup the
-application:
+## DEMO
 
-1. `npm install`
+[Github Pages hosted DEMO](https://derandreas-dt.github.io/babylonjs-posenet-babysaber/)
 
-## Running
+This little demo is hosted on GitHub Pages and served from the dist folder.
+So should be latest build with the newest bugs :)
 
-Run the following commands from within the repository's root folder to run the 
-project using `webpack-dev-server`:
+## Images and HowTo
 
-1. `npm start`
+![Game looks like](demo_game.png "Sample screenshot what the game looks like")
 
-Then open http://localhost:9000 in your browser
+## NOTES
 
-## Build
+  * first game with BabylonJS and "3D Space"
+  * it has no sound, no beat detection, blocks are randomly flying towards you
+  * this is not a real game (it has a score counter! *yeah*)
+  * toggle skeleton view bei pressing "s"
+  * toggle axis viewer by pressing "a"
+  * toggle fullscreen with "f"
 
-Run the following commands from within the repository's root folder to build the
-project using `webpack`:
+## Mentions
 
-1. `npm run build`
+  * utilize the [BabylonJS Engine](https://www.babylonjs.com/)
+  * based on the BabylonJS TS template by Oktinaut [Github Link](https://github.com/oktinaut/babylonjs-typescript-starter)
+  * uses tensorflow posenet [GitHub Link](https://github.com/tensorflow/tfjs-models/tree/master/posenet)
+  * the BabylonJS Community and their BabylonJS playgroud for examples
 
-## Automatic Deployment
+## License
 
-Every push on master triggers a build and deploy workflow. The build output is
-published to itch.io.
-
-This workflow should be easily changeable to run on different triggers, e.g.
-creating a release or pushing a tag.
-
-For this deployment to work, you have to create your project on itch.io 
-beforehand.
-
-When you use this template, create a secret `ITCH_API_KEY` in your repository's
-secret settings. You also have to adjust your username and project name in the
-[workflow file](.github/workflows/build_and_publish.yml).
-
-After the build was published, you have to configure it on itch.io to run in the
-browser.
-
-A demonstration of the deployment for this repository can be found at
-https://oktinaut.itch.io/babylon-example.
-
-## Structure
-
-- `src/` *source code folder*
-
-    - `index.ts` *application entry point*
-
-    - `glsl.d.ts` *typescript definition file to resolve .glsl files*
-
-    - `Materials/` *folder for custom materials/shaders*
-
-        - `SampleMaterial.ts` *sample custom material*
-
-        - `Shaders/` *folder containing GLSL shader code*
-
-            - `Sample/` *folder containing sample shader* 
-
-                - `sample.fragment.glsl` *sample fragment shader*
-
-                - `sample.vertex.glsl` *sample vertex shader*
-
-- `public` *folder containing static assets*
-
-    - `index.html` *HTML entry point*
-
-- `dist` *folder containing output of build process*
+MIT License
